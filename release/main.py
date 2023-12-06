@@ -43,7 +43,7 @@ class TitanicDatabase(QMainWindow, Ui_MainWindow):
         self.load_csv_file.clicked.connect(self.load_csv)
 
         # подключаем базу данных
-        self.connection = sqlite3.connect('database')
+        self.connection = sqlite3.connect('data/database')
         cur = self.connection.cursor()
         result = cur.execute('''SELECT * FROM main''')
 
@@ -213,7 +213,7 @@ class EditDBWidget(QWidget, Edit_DB_Form):
         self.setWindowTitle('Edit the database')
 
         # подключаем базу данных
-        self.connection = sqlite3.connect('database')
+        self.connection = sqlite3.connect('data/database')
         self.cur = self.connection.cursor()
 
         # подключаем диалоги для предупреждения
@@ -427,7 +427,7 @@ class SearchByPhoto(QWidget, Ui_Form):
         self.setWindowTitle('Search by photo')
 
         # подключаем базу данных
-        self.db = sqlite3.connect('database')
+        self.db = sqlite3.connect('data/database')
         self.cur = self.db.cursor()
 
         # кнопка для произведения
