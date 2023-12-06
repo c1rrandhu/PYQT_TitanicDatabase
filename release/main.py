@@ -43,7 +43,7 @@ class TitanicDatabase(QMainWindow, Ui_MainWindow):
         self.load_csv_file.clicked.connect(self.load_csv)
 
         # подключаем базу данных
-        self.connection = sqlite3.connect('data/database')
+        self.connection = sqlite3.connect('release/data/database')
         cur = self.connection.cursor()
         result = cur.execute('''SELECT * FROM main''')
 
@@ -213,7 +213,7 @@ class EditDBWidget(QWidget, Edit_DB_Form):
         self.setWindowTitle('Edit the database')
 
         # подключаем базу данных
-        self.connection = sqlite3.connect('data/database')
+        self.connection = sqlite3.connect('release/data/database')
         self.cur = self.connection.cursor()
 
         # подключаем диалоги для предупреждения
@@ -427,7 +427,7 @@ class SearchByPhoto(QWidget, Ui_Form):
         self.setWindowTitle('Search by photo')
 
         # подключаем базу данных
-        self.db = sqlite3.connect('data/database')
+        self.db = sqlite3.connect('release/data/database')
         self.cur = self.db.cursor()
 
         # кнопка для произведения
@@ -444,7 +444,7 @@ class SearchByPhoto(QWidget, Ui_Form):
                 for x in res:
                     # размер лейбла, в который мы помещаем картинку, ограничен (350х290),
                     # поэтому, сохранив пиксмап, подгоним его под размер лейбла
-                    pixmap = QPixmap(x[0]).scaled(350, 290)
+                    pixmap = QPixmap(f'release/photos/{x[0]}').scaled(350, 290)
                 self.photo_label.setPixmap(pixmap)
             else:
                 # в случае изначально пустого ввода
